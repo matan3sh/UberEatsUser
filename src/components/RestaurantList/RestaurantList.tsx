@@ -1,7 +1,7 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import { RestaurantItem } from "../RestaurantItem/RestaurantItem";
 
-interface Dish {
+export interface Dish {
   name: string;
   description: string;
   price: number;
@@ -25,14 +25,20 @@ interface IProps {
 
 export function RestaurantList({ restaurants }: IProps) {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={restaurants}
-        renderItem={({ item }) => <RestaurantItem restaurant={item} />}
+        renderItem={({ item }) => (
+          <RestaurantItem key={item.id} restaurant={item} />
+        )}
         showsVerticalScrollIndicator={false}
       />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+});
