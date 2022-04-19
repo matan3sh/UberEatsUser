@@ -26,6 +26,7 @@ export function RestaurantDetailsScreen() {
         </Text>
       </View>
 
+      <Text style={styles.menuTitle}>Menu</Text>
       <DishList dishes={restaurant.dishes} />
     </View>
   );
@@ -55,5 +56,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 40,
     left: 10,
+  },
+  menuTitle: {
+    marginTop: 20,
+    marginHorizontal: 10,
+    fontSize: 18,
+    letterSpacing: 0.75,
   },
 });
