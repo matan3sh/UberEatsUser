@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { RestaurantItem } from "../RestaurantItem/RestaurantItem";
 
 interface Dish {
@@ -26,9 +26,11 @@ interface IProps {
 export function RestaurantList({ restaurants }: IProps) {
   return (
     <View>
-      {restaurants.map((restaurant) => (
-        <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-      ))}
+      <FlatList
+        data={restaurants}
+        renderItem={({ item }) => <RestaurantItem restaurant={item} />}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 }
