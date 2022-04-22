@@ -47,7 +47,7 @@ export function DishDetailsScreen() {
 
       <View style={styles.button}>
         <Text style={styles.buttonText}>
-          Add {quantity} to basket (${getTotalPrice()})
+          Add {quantity} to basket &#8226; ${getTotalPrice()}
         </Text>
       </View>
     </View>
