@@ -16,7 +16,12 @@ export interface Restaurant {
   maxDeliveryTime: number;
   rating: number;
   image: string;
-  dishes: Dish[];
+  dishes?: Dish[];
+  address?: string;
+  lat?: number;
+  lng?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface IProps {
