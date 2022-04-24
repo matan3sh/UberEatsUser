@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import { OrderDetailsList } from "../../components/OrderDetailsList/OrderDetailsList";
+
 import restaurants from "../../../assets/data/restaurants.json";
-import { DishList } from "../../components/DishList/DishList";
+import orders from "../../../assets/data/orders.json";
 
-const restaurant = restaurants[0];
+const order = orders[0];
 
-export function RestaurantDetailsScreen() {
+export function OrderDetailsScreen() {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: restaurant.image }} style={styles.image} />
+      <Image source={{ uri: order.restaurant.image }} style={styles.image} />
 
       <Ionicons
         name="arrow-back-circle"
@@ -19,15 +21,15 @@ export function RestaurantDetailsScreen() {
       />
 
       <View style={styles.wrapper}>
-        <Text style={styles.title}>{restaurant.name}</Text>
-        <Text style={styles.subtitle}>
-          ${restaurant.deliveryFee} &#8226; {restaurant.minDeliveryTime}-
-          {restaurant.maxDeliveryTime} min
-        </Text>
+        <Text style={styles.title}>{order.restaurant.name}</Text>
+        <Text style={styles.subtitle}>{order.status} &#8226; 2 days ago</Text>
       </View>
 
-      <Text style={styles.menuTitle}>Menu</Text>
-      <DishList dishes={restaurant.dishes} />
+      <Text style={styles.orderTitle}>Your order</Text>
+
+      <View style={styles.list}>
+        <OrderDetailsList dishes={restaurants[0].dishes} />
+      </View>
     </View>
   );
 }
@@ -44,8 +46,8 @@ const styles = StyleSheet.create({
     aspectRatio: 5 / 3,
   },
   title: {
-    fontSize: 35,
-    fontWeight: "600",
+    fontSize: 28,
+    fontWeight: "bold",
     marginVertical: 10,
   },
   subtitle: {
@@ -57,10 +59,14 @@ const styles = StyleSheet.create({
     top: 40,
     left: 10,
   },
-  menuTitle: {
-    marginTop: 20,
+  orderTitle: {
+    marginTop: 10,
     marginHorizontal: 10,
-    fontSize: 18,
+    fontSize: 22,
     letterSpacing: 0.75,
+    fontWeight: "bold",
+  },
+  list: {
+    padding: 15,
   },
 });
