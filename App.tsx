@@ -1,18 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-
-import { HomeScreen } from "./src/screens/HomeScreen/HomeScreen";
-import { RestaurantDetailsScreen } from "./src/screens/RestaurantDetailsScreen/RestaurantDetailsScreen";
-import { DishDetailsScreen } from "./src/screens/DishDetailsScreen/DishDetailsScreen";
-import { BasketScreen } from "./src/screens/BasketScreen/BasketScreen";
-import { OrderScreen } from "./src/screens/OrderScreen/OrderScreen";
-import { OrderDetailsScreen } from "./src/screens/OrderDetailsScreen/OrderDetailsScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { RootNavigator } from "./src/navigation";
 
 export default function App() {
   return (
-    <>
-      <OrderDetailsScreen />
+    <NavigationContainer>
+      <RootNavigator />
 
       <StatusBar style="light" />
-    </>
+    </NavigationContainer>
   );
 }
