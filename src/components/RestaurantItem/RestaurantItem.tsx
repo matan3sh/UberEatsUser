@@ -1,4 +1,8 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
 import { Restaurant } from "../RestaurantList/RestaurantList";
 
 interface IProps {
@@ -6,8 +10,12 @@ interface IProps {
 }
 
 export function RestaurantItem({ restaurant }: IProps) {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
   return (
-    <View style={styles.restaurantContainer}>
+    <TouchableOpacity
+      style={styles.restaurantContainer}
+      onPress={() => navigation.navigate("Restaurant", { id: restaurant.id })}>
       <Image source={{ uri: restaurant.image }} style={styles.image} />
 
       <View style={styles.row}>
@@ -23,7 +31,7 @@ export function RestaurantItem({ restaurant }: IProps) {
           <Text>{restaurant.rating}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -1,22 +1,38 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
 import restaurants from "../../../assets/data/restaurants.json";
 import { DishList } from "../../components/DishList/DishList";
 
+type ParamList = {
+  Detail: {
+    id: string;
+  };
+};
+
 const restaurant = restaurants[0];
 
 export function RestaurantDetailsScreen() {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+  const route = useRoute<RouteProp<ParamList, "Detail">>();
+
+  useEffect(() => {
+    if (route.params.id) {
+      console.log(route.params.id);
+    }
+  }, [route.params.id]);
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: restaurant.image }} style={styles.image} />
 
-      <Ionicons
-        name="arrow-back-circle"
-        size={45}
-        color="white"
-        style={styles.backIcon}
-      />
+      <Pressable style={styles.backIcon} onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back-circle" size={45} color="white" />
+      </Pressable>
 
       <View style={styles.wrapper}>
         <Text style={styles.title}>{restaurant.name}</Text>
