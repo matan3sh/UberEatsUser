@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
 import { OrderDetailsList } from "../../components/OrderDetailsList/OrderDetailsList";
 
 import restaurants from "../../../assets/data/restaurants.json";
@@ -9,6 +12,8 @@ import orders from "../../../assets/data/orders.json";
 const order = orders[0];
 
 export function OrderDetailsScreen() {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: order.restaurant.image }} style={styles.image} />
@@ -18,6 +23,7 @@ export function OrderDetailsScreen() {
         size={45}
         color="white"
         style={styles.backIcon}
+        onPress={() => navigation.goBack()}
       />
 
       <View style={styles.wrapper}>

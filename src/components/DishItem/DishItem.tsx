@@ -1,4 +1,8 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
 import { Dish } from "../RestaurantList/RestaurantList";
 
 interface IProps {
@@ -6,8 +10,12 @@ interface IProps {
 }
 
 export function DishItem({ dish }: IProps) {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("Dish", { id: dish.id })}>
       <View style={styles.details}>
         <Text style={styles.name}>{dish.name}</Text>
         <Text style={styles.description} numberOfLines={2}>
@@ -19,7 +27,7 @@ export function DishItem({ dish }: IProps) {
       {dish.image && (
         <Image source={{ uri: dish.image }} style={styles.image} />
       )}
-    </View>
+    </Pressable>
   );
 }
 

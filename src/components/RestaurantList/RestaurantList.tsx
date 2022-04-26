@@ -2,6 +2,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import { RestaurantItem } from "../RestaurantItem/RestaurantItem";
 
 export interface Dish {
+  id: string;
   name: string;
   description: string;
   price: number;

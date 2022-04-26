@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
@@ -30,9 +30,13 @@ export function RestaurantDetailsScreen() {
     <View style={styles.container}>
       <Image source={{ uri: restaurant.image }} style={styles.image} />
 
-      <Pressable style={styles.backIcon} onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back-circle" size={45} color="white" />
-      </Pressable>
+      <Ionicons
+        style={styles.backIcon}
+        name="arrow-back-circle"
+        size={45}
+        color="white"
+        onPress={() => navigation.goBack()}
+      />
 
       <View style={styles.wrapper}>
         <Text style={styles.title}>{restaurant.name}</Text>
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
     left: 10,
   },
   menuTitle: {
-    marginTop: 20,
+    marginVertical: 20,
     marginHorizontal: 10,
     fontSize: 18,
     letterSpacing: 0.75,

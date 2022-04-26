@@ -12,7 +12,7 @@ export function DishList({ dishes }: IProps) {
     <FlatList
       data={dishes}
       renderItem={({ item }) => <DishItem dish={item} />}
-      keyExtractor={(item) => item.description}
+      keyExtractor={(item) => item.id}
     />
   );
 }

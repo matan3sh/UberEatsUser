@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
 import restaurants from "../../../assets/data/restaurants.json";
 
 const dish = restaurants[0].dishes[0];
 
 export function DishDetailsScreen() {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
   const [quantity, setQuantity] = useState<number>(1);
 
   const onMinus = () => {
@@ -45,11 +50,13 @@ export function DishDetailsScreen() {
         />
       </View>
 
-      <View style={styles.button}>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("Basket")}>
         <Text style={styles.buttonText}>
           Add {quantity} to basket &#8226; ${getTotalPrice()}
         </Text>
-      </View>
+      </Pressable>
     </View>
   );
 }

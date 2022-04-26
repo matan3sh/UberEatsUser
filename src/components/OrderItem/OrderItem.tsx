@@ -1,4 +1,8 @@
-import { StyleSheet, Image, View, Text } from "react-native";
+import { StyleSheet, Image, View, Text, Pressable } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
 import { Order } from "../OrderList/OrderList";
 
 interface IProps {
@@ -6,8 +10,12 @@ interface IProps {
 }
 
 export function OrderItem({ order }: IProps) {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("Order", { id: order.id })}>
       <Image source={{ uri: order.restaurant.image }} style={styles.image} />
 
       <View>
@@ -15,7 +23,7 @@ export function OrderItem({ order }: IProps) {
         <Text style={styles.content}>3 items &#8226; $38.45</Text>
         <Text>2 days ago &#8226; {order.status}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
